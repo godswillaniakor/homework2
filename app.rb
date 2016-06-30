@@ -41,7 +41,7 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
     flash[:message] = "Invalid guess" if letter =~ /\W/i or letter.nil? or letter.empty?
-    flash[:message] = "You have already used that letter" if @game.guesses.include? letter or @game.wrong_guesses.include? letter
+    flash[:message] = "You have already used that letter." if @game.guesses.include? letter or @game.wrong_guesses.include? letter
     @game.guess(letter)
     
     

@@ -29,6 +29,7 @@ class HangpersonGame
     #raise ArgumentError if guessedLetter.nil?
     guessedLetter.downcase!
     if @word.include? guessedLetter and !@guesses.include? guessedLetter
+    
       @guesses << guessedLetter 
       return true
     elsif !@word.include? guessedLetter and !@wrong_guesses.include? guessedLetter
