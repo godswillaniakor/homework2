@@ -25,8 +25,9 @@ class HangpersonGame
   
   def guess(guessedLetter)
     #raise ArgumentError if guessedLetter.empty?
+    #raise ArgumentError if guessedLetter =~ /\W/i or guessedLetter.empty? or guessedLetter.nil?
     raise ArgumentError if guessedLetter =~ /\W/i or guessedLetter.nil? or guessedLetter.empty?
-    #raise ArgumentError if guessedLetter.nil?
+  
     guessedLetter.downcase!
     if @word.include? guessedLetter and !@guesses.include? guessedLetter
     
