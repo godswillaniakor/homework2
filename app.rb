@@ -40,8 +40,9 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ### 
-    if letter =~ /\W/i or letter.nil? or letter.empty?
+    if letter =~ /^[^a-z]/i or letter.nil? or letter.empty?
       flash[:message] = "Invalid guess."
+      redirect '/show'
     elsif @game.guesses.include? letter or @game.wrong_guesses.include? letter
       flash[:message] = "You have already used that letter."
     else
