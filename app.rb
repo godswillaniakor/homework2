@@ -41,7 +41,7 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ### 
     if letter =~ /\W/i or letter.nil? or letter.empty?
-      redirect '/show' and flash[:message] = "Invalid guess."
+      flash[:message] = "Invalid guess."
     elsif @game.guesses.include? letter or @game.wrong_guesses.include? letter
       flash[:message] = "You have already used that letter."
     else
@@ -57,9 +57,16 @@ class HangpersonApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    redirect '/win' if @game.check_win_or_lose.eql? :win
-    redirect '/lose' if @game.check_win_or_lose.eql? :lose
-    erb :show # You may change/remove this line
+    if @game.check_win_or_lose.eql? :win
+      redirect '/win'
+    elsif @game.check_win_or_lose.eql? :lose
+      redirect '/lose'
+    else
+      erb :show
+    end
+    #redirect '/win' if @game.check_win_or_lose.eql? :win
+    #redirect '/lose' if @game.check_win_or_lose.eql? :lose
+    #erb :show # You may change/remove this line
     
   end
   
